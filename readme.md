@@ -20,3 +20,14 @@ pip install graphiti-core
 ```
 pip install pdf2md-llm
 ```
+
+### 4. data import/export
+```
+-- import
+docker exec -it neo4j bin/cypher-shell -u neo4j -p password < import/all.cypher
+
+-- export
+CALL apoc.export.cypher.all("all.cypher", {format: "cypher-shell"})
+YIELD file, batches, source, format, nodes, relationships, properties
+RETURN file, nodes, relationships;
+```
